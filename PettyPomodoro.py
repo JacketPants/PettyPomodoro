@@ -33,14 +33,13 @@ class PettyPomodoro():
 
     def SetPomodoro(self, pomodoroTime=-1, restTime=-1, restTimeLong=-1, timer=-1):
         if pomodoroTime != -1:
-            self.__pomodoroTime=pomodoroTime
+            self.__pomodoroTime = pomodoroTime
         if restTime != -1:
-            self.__restTime=restTime
+            self.__restTime = restTime
         if restTimeLong != -1:
-            self.__restTimeLong=restTimeLong
+            self.__restTimeLong = restTimeLong
         if timer != -1:
-            self.__timer=timer
-        
+            self.__timer = timer
 
     def StartNext(self):
         myThread = threading.Thread(target=self.__Thread)
