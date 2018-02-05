@@ -1,2 +1,2 @@
 # PettyPomodoro
-A simple command line pomodoro timer
+A simple command line _pomodoro_ timer
