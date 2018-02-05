@@ -19,6 +19,21 @@ class PettyPomodoro():
         self.__restTimeLong = restTimeLong
         self.__timer = timer
 
+    def __SetState(self, command):
+        self.__state = command
+
+    def __SetTime(self):
+        self.__timeList.append(time.time())
+
+    def __Thread(self):
+        while time.time() <= self.__endTime:
+            if self.GetState == "STOP":
+                break
+            else:
+                time.sleep(self.__timer)
+        else:
+            self.__SetState("END" if self.GetState() == "RUN" else "START")
+
     def GetPomodoro(self):
         return [self.__pomodoroTime, self.__restTime, self.__restTimeLong, self.__timer]
 
@@ -31,7 +46,12 @@ class PettyPomodoro():
     def GetTaskTime(self):
         return self.__endTime-time.time()
 
+    def Stop(self):
+        self.__SetState("STOP")
+
     def SetPomodoro(self, pomodoroTime=-1, restTime=-1, restTimeLong=-1, timer=-1):
+        self.__SetState("STOP")
+        self.__timeList = []
         if pomodoroTime != -1:
             self.__pomodoroTime = pomodoroTime
         if restTime != -1:
@@ -47,52 +67,40 @@ class PettyPomodoro():
             self.__SetTime()
             self.__SetState("RUN")
             self.__endTime = self.__timeList[len(
-                self.__timeList)-1] + self.pomodoroTime
+                self.__timeList)-1] + self.__pomodoroTime
         elif self.GetState() == "END":
             self.__SetTime()
             self.__SetState("REST")
             self.__endTime = self.__timeList[len(self.__timeList)-1] + (
-                self.restTimeLong if len(
-                    self.__timeList) % 8 == 0 else self.restTime)
+                self.__restTimeLong if len(
+                    self.__timeList) % 8 == 0 else self.__restTime)
         elif self.GetState() == "STOP":
-            self.__init__()
+            self.__SetPomodoro()
             self.__SetTime()
             self.__SetState("RUN")
             self.__endTime = self.__timeList[len(
-                self.__timeList)-1] + self.pomodoroTime
+                self.__timeList)-1] + self.__pomodoroTime
         else:
             return False
         myThread.start()
         return True
 
-    def __SetState(self, command):
-        self.__state = command
 
-    def __SetTime(self):
-        self.__timeList.append(time.time())
-
-    def __Thread(self):
-        while time.time() <= self.__endTime:
-            if self.GetState == "STOP":
-                break
-            else:
-                self.PrintPomodoro()
-                time.sleep(0.2)
-        else:
-            self.__SetState("END" if self.GetState() == "RUN" else "START")
-
-
+# The Test Code
 if __name__ == "__main__":
-    pp = PettyPomodoro(5, 2, 3)
+    pp = PettyPomodoro(25, 5, 15)
     print("Petty Pomodoro Command")
     while True:
         command = input()
-        if command == "exit":
+        if command == "e":
             break
-        elif command == "next":
+        elif command == "n":
             pp.StartNext()
-        elif command == "print":
-            pp.PrintPomodoro()
+        elif command == "p":
+            print("State:"+str(pp.GetState()))
+            print("TaskTime:"+str(pp.GetTaskTime))
+        elif command == "s":
+            pp.Stop()
         else:
             print("Please Input Right Command")
     else:
