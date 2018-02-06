@@ -63,7 +63,6 @@ class PettyPomodoro():
             self.__timer = timer
 
     def StartNext(self):
-        # self.myThread = threading.Thread(target=self.__Thread)
         if self.GetState() == "START":
             self.__SetTime()
             self.__SetState("RUN")
@@ -83,7 +82,6 @@ class PettyPomodoro():
                 self.__timeList)-1] + self.__pomodoroTime
         else:
             return False
-        # self.__myThread.start()
         return True
 
 
@@ -100,6 +98,8 @@ if __name__ == "__main__":
         elif command == "p":
             print("State:"+str(pp.GetState()))
             print("TaskTime:"+str(pp.GetTaskTime()))
+            print("Pomodoro:"+str(pp.GetPomodoro()))
+            print("TimeList:"+str(pp.GetTimeList()))
         elif command == "s":
             pp.Stop()
         else:
