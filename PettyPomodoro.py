@@ -75,7 +75,7 @@ class PettyPomodoro():
                 self.__restTimeLong if len(
                     self.__timeList) % 8 == 0 else self.__restTime)
         elif self.GetState() == "STOP":
-            self.__SetPomodoro()
+            self.SetPomodoro()
             self.__SetTime()
             self.__SetState("RUN")
             self.__endTime = self.__timeList[len(
