@@ -49,6 +49,7 @@ class PettyPomodoro():
 
     def Stop(self):
         self.__SetState("STOP")
+        self.SetPomodoro()
 
     def SetPomodoro(self, pomodoroTime=-1, restTime=-1, restTimeLong=-1, timer=-1):
         self.__SetState("STOP")
@@ -63,23 +64,18 @@ class PettyPomodoro():
             self.__timer = timer
 
     def StartNext(self):
-        if self.GetState() == "START":
+        state = self.GetState()
+        if state == "START" or state == "STOP":
             self.__SetTime()
             self.__SetState("RUN")
             self.__endTime = self.__timeList[len(
                 self.__timeList)-1] + self.__pomodoroTime
-        elif self.GetState() == "END":
+        elif state == "END":
             self.__SetTime()
             self.__SetState("REST")
             self.__endTime = self.__timeList[len(self.__timeList)-1] + (
                 self.__restTimeLong if len(
                     self.__timeList) % 8 == 0 else self.__restTime)
-        elif self.GetState() == "STOP":
-            self.SetPomodoro()
-            self.__SetTime()
-            self.__SetState("RUN")
-            self.__endTime = self.__timeList[len(
-                self.__timeList)-1] + self.__pomodoroTime
         else:
             return False
         return True
