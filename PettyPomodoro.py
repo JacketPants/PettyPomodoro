@@ -89,7 +89,7 @@ class PettyPomodoro():
 # The Test Code
 if __name__ == "__main__":
     pp = PettyPomodoro(25, 5, 15)
-    print("Petty Pomodoro Command")
+    print("Petty Pomodoro Test")
     while True:
         command = input()
         if command == "e":
@@ -103,5 +103,4 @@ if __name__ == "__main__":
             pp.Stop()
         else:
             print("Please Input Right Command")
-    else:
-        sys.exit()
+    sys.exit()
