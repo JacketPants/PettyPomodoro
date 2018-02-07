@@ -1,5 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
+'''
+author: Joe Zhang
+git: github.com/JacketPants
+blog: moe101.top
+email: joezhang@outlook.com
+'''
 
 import sys
 import threading
@@ -7,17 +13,36 @@ import time
 
 
 class PettyPomodoro():
+    '''
+        The PettyPomodoro Class
+
+        The __init__ can set four parameters
+        pomodoroTime: the lenght of work
+        restTime: the lenght of rest
+        restLongTime: the lenght of long rest that every 4 times
+        timer: the frequency of timer
+
+        a timer thread will be start after the init
+    '''
+
     def __init__(self, pomodoroTime=25*60, restTime=5*60, restTimeLong=15*60, timer=0.5):
         # pomodoro state
+        # START->RUN->END->REST->START
         self.__state = "START"
-        # every time after the PP start the 0 is start time
+        # every time about "START->RUN" and "END->REST"
         self.__timeList = []
         # the runing task's end time
         self.__endTime = 0
+        # the work lenght of time
         self.__pomodoroTime = pomodoroTime
+        # the rest lenght of time
         self.__restTime = restTime
+        # The Pomodoro have a long rest every 4 times rest
         self.__restTimeLong = restTimeLong
+        # the timer check frequency
+        # lower is higher CPU utilization rate
         self.__timer = timer
+        # the timer thread
         self.__myThread = threading.Thread(target=self.__Thread)
         self.__myThread.start()
 
@@ -36,22 +61,49 @@ class PettyPomodoro():
             time.sleep(self.__timer)
 
     def GetPomodoro(self):
+        '''
+            Get a list about all the Pomodoro setting information
+
+            Include:
+            pomodoroTime
+            restTime
+            restTimeLong
+            timer
+        '''
         return [self.__pomodoroTime, self.__restTime, self.__restTimeLong, self.__timer]
 
     def GetState(self):
+        '''
+            Get the Pomodoro's state now
+        '''
         return self.__state
 
     def GetTimeList(self):
+        '''
+            Get a list about the Pomodoro's all time Point
+        '''
         return self.__timeList
 
     def GetTaskTime(self):
+        '''
+            Get the Pomodoro's remaining time
+        '''
         return self.__endTime-time.time()
 
     def Stop(self):
+        '''
+            Stop the Pomodoro
+
+            The pomodoro will be reset
+        '''
         self.__SetState("STOP")
         self.SetPomodoro()
 
     def SetPomodoro(self, pomodoroTime=-1, restTime=-1, restTimeLong=-1, timer=-1):
+        '''
+            reset the Pomodoro
+            the list of time will be reset too
+        '''
         self.__SetState("STOP")
         self.__timeList = []
         if pomodoroTime != -1:
@@ -64,6 +116,11 @@ class PettyPomodoro():
             self.__timer = timer
 
     def StartNext(self):
+        '''
+            Start the Pomodoro when it's pause
+
+            "pause" is "START" "END" "STOP"
+        '''
         state = self.GetState()
         if state == "START" or state == "STOP":
             self.__SetTime()
