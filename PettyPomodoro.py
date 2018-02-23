@@ -76,7 +76,7 @@ class PettyPomodoro():
         '''
             Get the Pomodoro's state now
         '''
-        return self.__state
+        return str(self.__state)
 
     def GetTimeList(self):
         '''
@@ -89,7 +89,7 @@ class PettyPomodoro():
             Get the Pomodoro's remaining time
         '''
         timeTask = self.__endTime-time.time()
-        return timeTask if timeTask > 0 else 0
+        return int(timeTask if timeTask > 0 else 0)
 
     def Stop(self):
         '''
