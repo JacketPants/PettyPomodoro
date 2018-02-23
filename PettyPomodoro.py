@@ -88,7 +88,8 @@ class PettyPomodoro():
         '''
             Get the Pomodoro's remaining time
         '''
-        return self.__endTime-time.time()
+        timeTask = self.__endTime-time.time()
+        return timeTask if timeTask > 0 else 0
 
     def Stop(self):
         '''
