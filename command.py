@@ -8,7 +8,7 @@ import pettypomodoro
 pp = pettypomodoro.PettyPomodoro()
 
 Info = '''
-PettyPomodoro - 0.2.27
+PettyPomodoro - 0.2.28
 ---------
 '''
 
