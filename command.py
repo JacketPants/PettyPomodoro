@@ -5,7 +5,7 @@ import time
 
 import pettypomodoro
 
-pp = pettypomodoro.PettyPomodoro(25, 5, 15, 0.5)
+pp = pettypomodoro.PettyPomodoro()
 
 Info = '''
 PettyPomodoro - 0.2.27
@@ -37,7 +37,7 @@ def PrintInfo():
 def PrintState():
     state = pp.GetState()
     print('\r', state, int(pp.GetTaskTime()) if state ==
-          "RUN" or state == "REST" else '', end='\t\t\t', flush=True)
+          "RUN" or state == "REST" else '', end='\t', flush=True)
 
 
 if __name__ == "__main__":
