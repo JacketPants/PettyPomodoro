@@ -25,7 +25,8 @@ class PettyPomodoro():
         a timer thread will be start after the init
     '''
 
-    def __init__(self, pomodoroTime=25*60, restTime=5*60, restTimeLong=15*60, timer=0.5):
+    def __init__(self, pomodoroTime=25*60, restTime=5*60,
+                 restTimeLong=15*60, timer=0.5):
         # pomodoro state
         # START->RUN->END->REST->START
         self.__state = "START"
@@ -70,7 +71,8 @@ class PettyPomodoro():
             restTimeLong
             timer
         '''
-        return [self.__pomodoroTime, self.__restTime, self.__restTimeLong, self.__timer]
+        return [self.__pomodoroTime, self.__restTime,
+                self.__restTimeLong, self.__timer]
 
     def GetState(self):
         '''
@@ -100,7 +102,8 @@ class PettyPomodoro():
         self.__SetState("STOP")
         self.SetPomodoro()
 
-    def SetPomodoro(self, pomodoroTime=-1, restTime=-1, restTimeLong=-1, timer=-1):
+    def SetPomodoro(self, pomodoroTime=-1, restTime=-1,
+                    restTimeLong=-1, timer=-1):
         '''
             reset the Pomodoro
             the list of time will be reset too
