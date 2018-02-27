@@ -8,7 +8,7 @@ import pettypomodoro
 pp = pettypomodoro.PettyPomodoro()
 
 Info = '''
-PettyPomodoro - 0.2.28
+PettyPomodoro - 0.3.31
 ---------
 '''
 
@@ -16,13 +16,16 @@ PettyPomodoro - 0.2.28
 def Timer():
     isPlayAudio = 0
     while True:
-        PrintState()
         state = pp.GetState()
+        if state == "STOP":
+            isPlayAudio = 0
         if state == "RUN" or state == "REST":
             isPlayAudio = 1
         elif isPlayAudio == 1:
+            print()
             PlayAudio()
             isPlayAudio = 0
+        PrintState()
         time.sleep(0.5)
 
 
@@ -34,18 +37,25 @@ def PrintInfo():
     print(Info)
 
 
+def PrintTime():
+    print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()), end='')
+
+
 def PrintState():
     state = pp.GetState()
-    print('\r', state, int(pp.GetTaskTime()) if state ==
-          "RUN" or state == "REST" else '', end='\t', flush=True)
+    print('\r', state, int(pp.GetTaskTime()) if state == "RUN" or state ==
+          "REST" else '', end='\t', flush=True)
 
 
 if __name__ == "__main__":
     PrintInfo()
+    PrintTime()
     (threading.Thread(target=Timer)).start()
     while True:
         command = getpass.getpass(prompt='')
-        if command == 'start' or command == 'next':
+        PrintTime()
+        print('\t', command.upper())
+        if command == 'start' or command == 'next' or command == '':
             pp.StartNext()
         elif command == 'stop' or command == 'pause':
             pp.Stop()
