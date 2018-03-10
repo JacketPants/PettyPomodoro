@@ -6,8 +6,9 @@ import time
 import PettyPomodoro
 
 pp = PettyPomodoro.PettyPomodoro()
+# pp = PettyPomodoro.PettyPomodoro(25, 5, 25, 0.5)
 
-Ver = "1.0.44"
+Ver = "1.0.1"
 
 Info = '''PettyPomodoro - %s
 ---------
