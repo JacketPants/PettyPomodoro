@@ -54,15 +54,20 @@ if __name__ == "__main__":
     while True:
         command = getpass.getpass(prompt='')
         PrintTime()
-        print('\t', command.upper(), sep='')
         if command == 'start' or command == 'next' or command == '':
+            command = 'NEXT'
             pp.StartNext()
         elif command == 'stop' or command == 'pause':
+            command = 'STOP'
             pp.Stop()
         elif command == 'exit':
+            command = 'EXIT'
             break
         elif command == 'help':
+            command = 'HELP'
             pass
         else:
+            command = 'ERROR COMMAND'
             pass
+        print('\t', command.upper(), sep='')
     sys.exit()
