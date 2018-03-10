@@ -7,7 +7,7 @@ import PettyPomodoro
 
 pp = PettyPomodoro.PettyPomodoro()
 
-Ver = "1.0.41"
+Ver = "1.0.44"
 
 Info = '''PettyPomodoro - %s
 ---------
