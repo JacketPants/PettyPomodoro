@@ -7,7 +7,7 @@ import PettyPomodoro
 
 pp = PettyPomodoro.PettyPomodoro()
 
-Info = '''PettyPomodoro - 0.3.34
+Info = '''PettyPomodoro - 0.3.35
 ---------
 Command order:
 next\\ENTER - enter next state of Pomodoro
@@ -16,6 +16,24 @@ help       - get help
 exit       - exit the program
 
 You can get more information at https://github.com/JacketPants/PettyPomodoro
+'''
+Help = '''
+输入指令：
+next\\ENTER - enter next state of Pomodoro
+stop\\pause - stop Pomodoro and restart
+help       - get help
+exit       - exit the program
+输出格式：
+在每次输入指令后，都会输出一个时间戳
+时间戳的格式为：年-月-日 分:时:秒 收到的指令
+在每个刷新时间内，都会输出当前的Pomodoro状态
+输出的格式为：State: 状态 (该状态的剩余时间)
+Pomodoro的状态分为
+START - 工作之前
+RUN - 工作中
+END - 工作结束
+REST - 休息中
+STOP - Pomodoro被强制终止
 '''
 
 
@@ -55,6 +73,10 @@ def PrintState():
           end='\t\r', flush=True)
 
 
+def PrintHelp():
+    print(Help)
+
+
 if __name__ == "__main__":
     isExit = False
     PrintInfo()
@@ -72,14 +94,14 @@ if __name__ == "__main__":
             pp.Stop()
         elif command == 'help':
             command = 'HELP'
-            pass
+            PrintHelp()
         elif command == 'exit':
             command = 'EXIT'
             isExit = True
         else:
             command = 'ERROR COMMAND'
-            pass
         print('\t', command.upper(), sep='')
     else:
-        pass
+        time.sleep(0.5)
+        print()
     sys.exit()
