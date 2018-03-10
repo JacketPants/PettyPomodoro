@@ -20,6 +20,7 @@ exit       - exit the program
 You can get more information at https://github.com/JacketPants/PettyPomodoro
 ---------
 ''' % Ver
+
 Help = '''
 输入指令：
 next\\ENTER - enter next state of Pomodoro
@@ -37,7 +38,6 @@ RUN - 工作中
 END - 工作结束
 REST - 休息中
 STOP - Pomodoro被强制终止
-
 '''
 
 
