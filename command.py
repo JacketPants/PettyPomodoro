@@ -7,8 +7,15 @@ import PettyPomodoro
 
 pp = PettyPomodoro.PettyPomodoro()
 
-Info = '''PettyPomodoro - 0.3.33
+Info = '''PettyPomodoro - 0.3.34
 ---------
+Command order:
+next\\ENTER - enter next state of Pomodoro
+stop\\pause - stop Pomodoro and restart
+help       - get help
+exit       - exit the program
+
+You can get more information at https://github.com/JacketPants/PettyPomodoro
 '''
 
 
@@ -63,12 +70,12 @@ if __name__ == "__main__":
         elif command == 'stop' or command == 'pause':
             command = 'STOP'
             pp.Stop()
-        elif command == 'exit':
-            command = 'EXIT'
-            isExit = True
         elif command == 'help':
             command = 'HELP'
             pass
+        elif command == 'exit':
+            command = 'EXIT'
+            isExit = True
         else:
             command = 'ERROR COMMAND'
             pass
