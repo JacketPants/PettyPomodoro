@@ -3,12 +3,11 @@ import sys
 import threading
 import time
 
-import pettypomodoro
+import PettyPomodoro
 
-pp = pettypomodoro.PettyPomodoro()
+pp = PettyPomodoro.PettyPomodoro()
 
-Info = '''
-PettyPomodoro - 0.3.31
+Info = '''PettyPomodoro - 0.3.33
 ---------
 '''
 
@@ -43,18 +42,19 @@ def PrintTime():
 
 def PrintState():
     state = pp.GetState()
-    print('\r', state, int(pp.GetTaskTime()) if state == "RUN" or state ==
-          "REST" else '', end='\t', flush=True)
+    print("STATE:", state, int(pp.GetTaskTime()) if state == "RUN" or state ==
+          "REST" else '', end='\t\r', flush=True)
 
 
 if __name__ == "__main__":
     PrintInfo()
     PrintTime()
+    print('\tOPEN')
     (threading.Thread(target=Timer)).start()
     while True:
         command = getpass.getpass(prompt='')
         PrintTime()
-        print('\t', command.upper())
+        print('\t', command.upper(), sep='')
         if command == 'start' or command == 'next' or command == '':
             pp.StartNext()
         elif command == 'stop' or command == 'pause':
