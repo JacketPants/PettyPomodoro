@@ -42,16 +42,19 @@ def PrintTime():
 
 def PrintState():
     state = pp.GetState()
-    print("STATE:", state, int(pp.GetTaskTime()) if state == "RUN" or state ==
-          "REST" else '', end='\t\r', flush=True)
+    print("State:", state,
+          'Time lift: '+str(pp.GetTaskTime()) + 's'
+          if state == "RUN" or state == "REST" else '',
+          end='\t\r', flush=True)
 
 
 if __name__ == "__main__":
+    isExit = False
     PrintInfo()
     PrintTime()
     print('\tOPEN')
     (threading.Thread(target=Timer)).start()
-    while True:
+    while not isExit:
         command = getpass.getpass(prompt='')
         PrintTime()
         if command == 'start' or command == 'next' or command == '':
@@ -62,7 +65,7 @@ if __name__ == "__main__":
             pp.Stop()
         elif command == 'exit':
             command = 'EXIT'
-            break
+            isExit = True
         elif command == 'help':
             command = 'HELP'
             pass
@@ -70,4 +73,6 @@ if __name__ == "__main__":
             command = 'ERROR COMMAND'
             pass
         print('\t', command.upper(), sep='')
+    else:
+        pass
     sys.exit()
