@@ -7,7 +7,9 @@ import PettyPomodoro
 
 pp = PettyPomodoro.PettyPomodoro()
 
-Info = '''PettyPomodoro - 0.3.35
+Ver = "1.0.41"
+
+Info = '''PettyPomodoro - %s
 ---------
 Command order:
 next\\ENTER - enter next state of Pomodoro
@@ -16,7 +18,8 @@ help       - get help
 exit       - exit the program
 
 You can get more information at https://github.com/JacketPants/PettyPomodoro
-'''
+---------
+''' % Ver
 Help = '''
 输入指令：
 next\\ENTER - enter next state of Pomodoro
@@ -34,6 +37,7 @@ RUN - 工作中
 END - 工作结束
 REST - 休息中
 STOP - Pomodoro被强制终止
+
 '''
 
 
@@ -85,7 +89,6 @@ if __name__ == "__main__":
     (threading.Thread(target=Timer)).start()
     while not isExit:
         command = getpass.getpass(prompt='')
-        PrintTime()
         if command == 'start' or command == 'next' or command == '':
             command = 'NEXT'
             pp.StartNext()
@@ -100,6 +103,7 @@ if __name__ == "__main__":
             isExit = True
         else:
             command = 'ERROR COMMAND'
+        PrintTime()
         print('\t', command.upper(), sep='')
     else:
         time.sleep(0.5)
