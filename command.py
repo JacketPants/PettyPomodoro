@@ -12,7 +12,7 @@ Ver = "1.0.1"
 
 Info = '''PettyPomodoro - %s
 ---------
-Command order:
+Input Command:
 next\\ENTER - enter next state of Pomodoro
 stop\\pause - stop Pomodoro and restart
 help       - get help
@@ -23,22 +23,24 @@ You can get more information at https://github.com/JacketPants/PettyPomodoro
 ''' % Ver
 
 Help = '''
-输入指令：
+Input Command：
 next\\ENTER - enter next state of Pomodoro
 stop\\pause - stop Pomodoro and restart
 help       - get help
 exit       - exit the program
-输出格式：
+
+Output：
 在每次输入指令后，都会输出一个时间戳
 时间戳的格式为：年-月-日 分:时:秒 收到的指令
 在每个刷新时间内，都会输出当前的Pomodoro状态
 输出的格式为：State: 状态 (该状态的剩余时间)
-Pomodoro的状态分为
-START - 工作之前
-RUN - 工作中
-END - 工作结束
-REST - 休息中
-STOP - Pomodoro被强制终止
+
+Pomodoro State:
+START - after work
+RUN - working
+END - end work and after rest
+REST - resting
+STOP - restart the Pomodoro
 '''
 
 
