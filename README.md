@@ -8,8 +8,8 @@ A simple command line ***pomodoro*** timer.
 
 ## Download
 
-- Binary releases: [](https://github.com/JacketPants/PettyPomodoro/releases)
-- Git: [](https://github.com/JacketPants/PettyPomodoro.git)
+- Binary releases: [https://github.com/JacketPants/PettyPomodoro/releases](https://github.com/JacketPants/PettyPomodoro/releases)
+- Git: [https://github.com/JacketPants/PettyPomodoro.git](https://github.com/JacketPants/PettyPomodoro.git)
 
 ## Usage
 
